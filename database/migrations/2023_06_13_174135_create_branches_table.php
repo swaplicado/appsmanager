@@ -13,10 +13,9 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
-            $table->id('id_branch');
+        Schema::create('erp_branches', function (Blueprint $table) {
+            $table->increments('id_branch');
             $table->string('branch_name');
-            $table->unsignedBigInteger('provider_id');
             $table->boolean('is_active')->default(1);
             $table->boolean('is_deleted');
             $table->unsignedBigInteger('created_by');
@@ -35,6 +34,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('erp_branches');
     }
 }

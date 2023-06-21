@@ -79,16 +79,17 @@ class LoginController extends Controller
 
         $userCredentials = $request->only('username', 'password');
 
-        $oUser = \DB::table('users')
+        $aRoles = \DB::table('users AS u')
+                    ->join('adm_user_roles AS ur', 'ur.user_id', '=', 'u.id')
                     ->where('username', $userCredentials['username'])
-                    ->select('rol_id')
-                    ->first();
+                    ->pluck('role_id')
+                    ->toArray();
 
-        if(is_null($oUser)){
+        if (count($aRoles) == 0) {
             return $this->sendFailedLoginResponse($request);
         }
 
-        if($oUser->rol_id == 2){
+        if (in_array(2, $aRoles)) {
             $data = AppLinkUtils::checkUserInAppLink((object)$userCredentials);
             if(!is_null($data)){
                 if($data->code != 200){

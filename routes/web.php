@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Config\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::middleware(['auth', 'menu'])->group( function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/registry', [HomeController::class, 'index'])->name('user_registry');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+Route::group(['middleware' => 'auth', 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {
+    Route::get('/userapps', [ManagerController::class, 'userapps'])->name('userapps');
 });

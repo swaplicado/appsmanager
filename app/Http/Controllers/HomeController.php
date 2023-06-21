@@ -23,7 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-        // return view('layouts.index');
+        $lApps = \DB::table('adm_apps AS a')
+                    ->leftJoin('adm_user_apps AS ua', 'ua.app_id', '=', 'a.id_app')
+                    ->where('a.is_active', true);
+
+        if (! \Auth::user()->isAdmin()) {
+            $lApps = $lApps->where('ua.user_id', \Auth::user()->id);
+        }
+
+        $lApps = $lApps->get();
+
+        return view('home')->with('lApps', $lApps);
     }
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>{{config('app.name', 'Laravel')}}</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('varios/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('varios/ti-icons/css/themify-icons.css')}}">
@@ -242,6 +242,8 @@
   <!-- Custom js for this page-->
   <script src="{{asset('js/principal/Chart.roundedBarCharts.js')}}"></script>
   <!-- End custom js for this page-->
+
+  @yield('footerScripts')
 </body>
 
 </html>

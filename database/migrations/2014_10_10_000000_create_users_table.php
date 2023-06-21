@@ -23,15 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('names');
             $table->string('full_name');
-            $table->unsignedBigInteger('rol_id');
-            $table->unsignedBigInteger('provider_id')->nullable();
             $table->rememberToken();
             $table->boolean('is_active')->default(1);
             $table->boolean('is_deleted');
             $table->timestamps();
-
-            $table->foreign('rol_id')->references('id_rol')->on('adm_rol');
-            $table->foreign('provider_id')->references('id_provider')->on('providers');
         });
 
         DB::table('users')->insert([
@@ -44,8 +39,6 @@ class CreateUsersTable extends Migration
                 'last_name' => 'admin',
                 'names' => 'admin',
                 'full_name' => 'Admin',
-                'rol_id' => 1,
-                'provider_id' => null,
                 'remember_token' => null,
                 'is_active' => 1,
                 'is_deleted' => 0,

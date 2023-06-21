@@ -41,4 +41,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'adm_user_roles','user_id', 'role_id');
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'adm_user_permissions', 'user_id', 'role_id');
+    }
+
+    function isAdmin() : bool {
+        $aRoles = $this->roles()
+                    ->pluck('role_id')
+                    ->toArray();
+
+        return in_array(1, $aRoles);
+    }
 }

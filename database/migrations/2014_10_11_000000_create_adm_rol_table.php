@@ -13,16 +13,15 @@ class CreateAdmRolTable extends Migration
      */
     public function up()
     {
-        Schema::create('adm_rol', function (Blueprint $table) {
-            $table->id('id_rol');
-            $table->string('rol');
+        Schema::create('adm_roles', function (Blueprint $table) {
+            $table->id('id_role');
+            $table->string('role');
             $table->boolean('is_deleted');
-            $table->timestamps();
         });
 
-        DB::table('adm_rol')->insert([
-            ['id_rol' => 1, 'rol' => 'Admin', 'is_deleted' => 0, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
-            ['id_rol' => 2, 'rol' => 'Proveedor', 'is_deleted' => 0, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ],
+        DB::table('adm_roles')->insert([
+            ['id_role' => 1, 'role' => 'Admin', 'is_deleted' => 0 ],
+            ['id_role' => 2, 'role' => 'Proveedor', 'is_deleted' => 0 ],
         ]);
     }
 
@@ -33,6 +32,6 @@ class CreateAdmRolTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adm_rol');
+        Schema::dropIfExists('adm_roles');
     }
 }

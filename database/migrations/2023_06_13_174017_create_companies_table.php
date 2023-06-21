@@ -13,13 +13,12 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->id('id_company');
+        Schema::create('erp_companies', function (Blueprint $table) {
+            $table->increments('id_company');
             $table->string('company_code');
             $table->string('company_name');
             $table->string('company_name_ui');
             $table->string('company_db_name');
-            $table->unsignedBigInteger('external_id');
             $table->boolean('is_active')->default(1);
             $table->boolean('is_deleted');
             $table->unsignedBigInteger('created_by');
@@ -38,6 +37,6 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('erp_companies');
     }
 }
