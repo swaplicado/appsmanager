@@ -22,7 +22,6 @@
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
   @yield('headStyles')
 
-  <script type="text/javascript" src="{{ asset('vue/vue.js') }}"></script>
   <script src="{{ asset('sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
   <script src="{{ asset('js/myApp/gui/SGui.js') }}"></script>
   @yield('headJs')

@@ -15,9 +15,12 @@ class CreateAdmUserPermissionsTable extends Migration
     {
         Schema::create('adm_user_permissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('app_n_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('permission_id');
+            $table->boolean('is_blocked')->default(false);
 
+            $table->foreign('app_n_id')->references('id_app')->on('adm_apps')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('permission_id')->references('id_permission')->on('adm_permissions')->onDelete('cascade');
         });

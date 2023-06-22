@@ -15,9 +15,11 @@ class CreateAdmUserRolesTable extends Migration
     {
         Schema::create('adm_user_roles', function (Blueprint $table) {
             $table->id();
+            $table->integer('app_n_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('role_id');
-
+            
+            $table->foreign('app_n_id')->references('id_app')->on('adm_apps')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('role_id')->references('id_role')->on('adm_roles')->onDelete('cascade');
         });

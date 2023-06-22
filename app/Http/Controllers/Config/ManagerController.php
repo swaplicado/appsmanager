@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Config;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserApp;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -25,9 +26,25 @@ class ManagerController extends Controller
             }
         }
 
-        // dd($lUsers);
-
         return view('configurations.userapps')->with('lUsers', $lUsers)
                             ->with('lApps', $lApps);
+    }
+
+    function updateAccess(Request $request) {
+        $oUserApp = UserApp::where('user_id', $request->user_id)
+                ->where('app_id', $request->app_id)
+                ->first();
+
+        if (is_null($oUserApp)) {
+            $oUserApp = new UserApp();
+            $oUserApp->user_id = $request->user_id;
+            $oUserApp->app_id = $request->app_id;
+            $oUserApp->save();
+        }
+        else {
+            $oUserApp->delete();
+        }
+
+        return json_encode("OK");
     }
 }

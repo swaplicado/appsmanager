@@ -15,8 +15,14 @@ class CreateAdmPermissionsTable extends Migration
     {
         Schema::create('adm_permissions', function (Blueprint $table) {
             $table->id('id_permission');
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
+            $table->integer('app_n_id')->unsigned()->nullable();
+            $table->string('key_code', 20);
+            $table->string('level', 10);
+            $table->string('description');
+
+            $table->foreign('app_n_id')->references('id_app')->on('adm_apps')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('key_code')->references('key_code')->on('adm_permission_keys');
+            
         });
     }
 
