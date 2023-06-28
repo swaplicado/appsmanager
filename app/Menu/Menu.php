@@ -17,6 +17,7 @@ class Menu
         if (in_array(1, $roles)) {
             $lMenus = [
                 (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Home'],
+                (object) ['type' => $element, 'route' => route('rolesvspermissions_index'), 'icon' => 'bx bxs-file bx-sm', 'name' => 'Roles permisos'],
                 (object) [
                     'type' => $list,
                     'list' => [

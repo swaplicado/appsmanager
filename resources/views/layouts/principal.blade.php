@@ -5,20 +5,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{config('app.name', 'Laravel')}}</title>
-  <!-- plugins:css -->
+  <!-- CSS files-->
   <link rel="stylesheet" href="{{asset('varios/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('varios/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" href="{{asset('varios/css/vendor.bundle.base.css')}}">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="{{asset('varios/datatables.net-bs4/dataTables.bootstrap4.css')}}">
   <link rel="stylesheet" href="{{asset('varios/ti-icons/css/themify-icons.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('js/principal/select.dataTables.min.css') }}">
   <link rel="stylesheet" href="{{ asset('boxicons/css/boxicons.min.css') }}">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <!-- endinject -->
+
+  <!-- Datatables CSS -->
+    <link rel="stylesheet" href="{{ asset("datatables/datatables.css") }}">
+    <link rel="stylesheet" href="{{asset('varios/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/principal/select.dataTables.min.css') }}">
+  <!-- End datatables CSS -->
+
+  <!-- Select2 CSS -->
+  <link href={{asset('select2js/css/select2.min.css')}} rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="{{asset('varios/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('varios/select2-bootstrap-theme/select2-bootstrap.min.css')}}"> --}}
+  <!-- End Select2 CSS -->
+  
+  <!-- CSS principal -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <!-- End CSS principal -->
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
   @yield('headStyles')
 
@@ -208,6 +216,7 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+          <div id="toasts"></div>
             @yield('content')
         </div>
         <!-- content-wrapper ends -->
@@ -222,13 +231,16 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
+  <script type="text/javascript" src="{{ asset('vue/vue.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('myApp/Utils/vueUtils.js') }}"></script>
   <script src="{{asset('varios/js/vendor.bundle.base.js')}}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="{{asset('varios/chart.js/Chart.min.js')}}"></script>
-  <script src="{{asset('varios/datatables.net/jquery.dataTables.js')}}"></script>
-  <script src="{{asset('varios/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
-  <script src="{{asset('js/principal/dataTables.select.min.js')}}"></script>
+  <!-- Datatables js -->
+    <script src="{{asset('datatables/dataTables.js')}}"></script>
+    <script src="{{asset('varios/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+  <!-- End datatables js -->
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
@@ -241,6 +253,9 @@
   <!-- Custom js for this page-->
   <script src="{{asset('js/principal/Chart.roundedBarCharts.js')}}"></script>
   <!-- End custom js for this page-->
+  <script src="{{asset('axios/axios.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('myApp/Utils/toastNotifications.js') }}"></script>
+  <script src="{{asset('varios/select2/select2.min.js')}}"></script>
 
   @yield('footerScripts')
 </body>

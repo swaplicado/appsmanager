@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Config\ManagerController;
+use App\Http\Controllers\RolesVsPermissions\RolesVsPermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,15 @@ Route::middleware(['auth', 'menu'])->group( function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/registry', [HomeController::class, 'index'])->name('user_registry');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    /**
+     * Roles vs permisos
+     */
+    Route::get('/rolesvspermissions', [RolesVsPermissionsController::class, 'index'])->name('rolesvspermissions_index');
+    Route::post('/rolesvspermissions/getPermissions', [RolesVsPermissionsController::class, 'getRolPermissions'])->name('rolesvspermissions_getRolPermissions');
+    Route::post('/rolesvspermissions/create', [RolesVsPermissionsController::class, 'create'])->name('rolesvspermissions_create');
+    Route::post('/rolesvspermissions/update', [RolesVsPermissionsController::class, 'update'])->name('rolesvspermissions_update');
+    Route::post('/rolesvspermissions/delete', [RolesVsPermissionsController::class, 'delete'])->name('rolesvspermissions_delete');
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {
