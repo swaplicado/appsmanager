@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Config\ManagerController;
-use App\Http\Controllers\RolesVsPermissions\RolesVsPermissionsController;
+use App\Http\Controllers\Permissions\RolesVsPermissionsController;
+use App\Http\Controllers\Permissions\UsersVsPermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,15 @@ Route::middleware(['auth', 'menu'])->group( function () {
     Route::post('/rolesvspermissions/create', [RolesVsPermissionsController::class, 'create'])->name('rolesvspermissions_create');
     Route::post('/rolesvspermissions/update', [RolesVsPermissionsController::class, 'update'])->name('rolesvspermissions_update');
     Route::post('/rolesvspermissions/delete', [RolesVsPermissionsController::class, 'delete'])->name('rolesvspermissions_delete');
+
+    /**
+     * Usuarios vs permisos
+     */
+    Route::get('/usersvspermissions', [UsersVsPermissionsController::class, 'index'])->name('usersVsPermissions_index');
+    Route::post('/usersvspermissions/getPermissions', [UsersVsPermissionsController::class, 'getUserPermission'])->name('usersvspermissions_getUserPermissions');
+    Route::post('/usersvspermissions/create', [UsersVsPermissionsController::class, 'create'])->name('usersvspermissions_create');
+    Route::post('/usersvspermissions/update', [UsersVsPermissionsController::class, 'update'])->name('usersvspermissions_update');
+    Route::post('/usersvspermissions/delete', [UsersVsPermissionsController::class, 'delete'])->name('usersvspermissions_delete');
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {

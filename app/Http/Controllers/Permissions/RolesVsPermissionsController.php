@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\RolesVsPermissions;
+namespace App\Http\Controllers\Permissions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\RolePermission;
 use App\Utils\AppsUtils;
-use App\Utils\RolesVsPermissionsUtils;
+use App\Utils\PermissionsUtils;
 use Illuminate\Http\Request;
 
 class RolesVsPermissionsController extends Controller
@@ -15,6 +15,7 @@ class RolesVsPermissionsController extends Controller
     public function index(){
         $lRoles = Role::leftJoin('adm_apps as a', 'a.id_app', '=', 'adm_roles.app_n_id')
                     ->where('is_deleted', 0)
+                    ->where('id_role', '!=', 1)
                     ->select(
                         'id_role',
                         'id_app',
@@ -45,7 +46,7 @@ class RolesVsPermissionsController extends Controller
 
     public function getRolPermissions(Request $request){
         try {
-            $lPermissions = RolesVsPermissionsUtils::getRolePermissions($request->id_rol);
+            $lPermissions = PermissionsUtils::getRolePermissions($request->id_rol);
         } catch (\Throwable $th) {
             \Log::error($th);
             return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);

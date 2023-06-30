@@ -21,6 +21,16 @@ class Menu
                 (object) [
                     'type' => $list,
                     'list' => [
+                        ['route' => route('rolesvspermissions_index'), 'icon' => 'bx bxs-file bx-sm', 'name' => 'Roles permisos'],
+                        ['route' => route('usersVsPermissions_index'), 'icon' => 'bx bxs-user-badge bx-sm', 'name' => 'Usuarios permisos'],
+                    ],
+                    'icon' => 'bx bx-no-entry bx-sm',
+                    'name' => 'Permisos',
+                    'id' => 'permisos'
+                ],
+                (object) [
+                    'type' => $list,
+                    'list' => [
                         ['route' => route('user_registry'), 'icon' => 'bx bxs-user-plus bx-sm', 'name' => 'Registrar usuario'],
                     ],
                     'icon' => 'bx bxs-user bx-sm',
