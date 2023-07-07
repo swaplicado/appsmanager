@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="table-responsive">
             <table class="display expandable-table dataTable no-footer" id="table_UsersVsPermissions" width="100%" cellspacing="0">
                 <thead>
@@ -105,6 +105,7 @@
 
     @include('layouts.table_jsControll', [
                                             'table_id' => 'table_permissions',
+                                            'rowGroup' => 2,
                                             'colTargets' => [0],
                                             'colTargetsSercheable' => [1],
                                         ] )

@@ -52,4 +52,6 @@ Route::middleware(['auth', 'menu'])->group( function () {
 Route::group(['middleware' => 'auth', 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {
     Route::get('/userapps', [ManagerController::class, 'userapps'])->name('userapps');
     Route::post('/userapps', [ManagerController::class, 'updateAccess'])->name('upd_user_app');
+    Route::post('/create', [ManagerController::class, 'createUser'])->name('createUser');
+    Route::post('/getRolesApp', [ManagerController::class, 'getRolesApp'])->name('getRolesApp');
 });

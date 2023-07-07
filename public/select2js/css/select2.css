@@ -239,7 +239,7 @@
     font-size: 1em;
     font-weight: bold;
     padding: 0 4px;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     top: 0; }
     .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {

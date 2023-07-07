@@ -10596,7 +10596,7 @@ select.tt-hint:focus::-ms-value {
 }
 
 .col-form-label {
-  padding-top: calc(0.875rem + 1px);
+  /* padding-top: calc(0.875rem + 1px); */
   padding-bottom: calc(0.875rem + 1px);
   margin-bottom: 0;
   font-size: inherit;
@@ -13783,7 +13783,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #e3e3e3;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .card > hr {
@@ -22587,7 +22587,7 @@ code {
 
 /* Forms */
 .form-group {
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 .input-group-append,
@@ -23734,7 +23734,7 @@ dl li {
 
 /* Modals */
 .modal .modal-dialog {
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 
 .modal .modal-dialog .modal-content .modal-header {
@@ -28418,7 +28418,7 @@ div.tagsinput span.tag a {
 
 .content-wrapper {
   background: #F5F7FF;
-  padding: 2.375rem 2.375rem;
+  /* padding: 2.375rem 2.375rem; */
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
@@ -28426,7 +28426,7 @@ div.tagsinput span.tag a {
 
 @media (max-width: 767px) {
   .content-wrapper {
-    padding: 1.5rem 1.5rem;
+    /* padding: 1.5rem 1.5rem; */
   }
 }
 
@@ -30573,7 +30573,7 @@ div.tagsinput span.tag a {
   --s-xsmall: 0.625em;
   --s-small: 1.2em;
   --border-width: 1px;
-  --c-primary: #5F11E8;
+  --c-primary: #4B49AC;
   --c-primary-20-percent-opacity: rgb(95 17 232 / 20%);
   --c-primary-10-percent-opacity: rgb(95 17 232 / 10%);
   --t-base: 0.4s;
@@ -30750,4 +30750,28 @@ div.tagsinput span.tag a {
 
 .warning {
   background-color: #ffc107;
+}
+
+.hiddeToLoad {
+  display: none;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Grosor del borde */
+  border-top: 16px solid #4B49AC; /* Color del borde */
+  border-radius: 50%; /* Forma el borde para que parezca un círculo */
+  width: 120px; /* Ancho del círculo */
+  height: 120px; /* Altura del círculo */
+  animation: spin 2s linear infinite; /* Agrega la animación de rotación */
+  /* margin: auto; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%); 
+  padding: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } /* Comienza la rotación desde 0 grados */
+  100% { transform: rotate(360deg); } /* Termina la rotación en 360 grados (un círculo completo) */
 }

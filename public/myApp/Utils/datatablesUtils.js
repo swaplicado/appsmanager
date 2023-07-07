@@ -1,6 +1,10 @@
-function drawTable(table_name, lData){
-    table[table_name].clear().draw();
-    table[table_name].rows.add(lData).draw();
+function drawTable(table_name, lData = null){
+    if(lData != null){
+        table[table_name].clear().draw();
+        table[table_name].rows.add(lData).draw();
+    }else{
+        table[table_name].draw();
+    }
 }
 
 function renderInTable(table_name, column, elements){

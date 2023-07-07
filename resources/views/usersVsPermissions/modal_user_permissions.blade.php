@@ -12,9 +12,9 @@
                     <thead>
                         <th>id_permission</th>
                         <th>id_rol</th>
-                        <th>Key</th>
-                        <th>permiso</th>
-                        <th>rol</th>
+                        <th>Nombre</th>
+                        <th>Permiso</th>
+                        <th>Rol</th>
                         <th>Asignado</th>
                     </thead>
                     <tbody>

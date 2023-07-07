@@ -18,9 +18,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'names',
+        'full_name',
+        'is_active',
+        'is_deleted',
+        'created_by',
+        'updated_by',
     ];
 
     /**
@@ -41,6 +49,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function types($apps){
+        return $this->belongsToMany(Typesuser::class, 'adm_users_typesuser', 'user_id', 'typeuser_id')->whereIn('adm_users_typesuser.app_id', $apps);
+    }
 
     public function roles()
     {

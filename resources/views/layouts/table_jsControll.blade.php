@@ -66,6 +66,11 @@
                     @if(isset($ordering))
                         "ordering": true,
                     @endif
+                    @if(isset($rowGroup))
+                        "rowGroup": {
+                            "dataSrc": <?php echo json_encode($rowGroup) ?>,
+                        },
+                    @endif
                     "columnDefs": [
                         {
                             "targets": <?php echo json_encode($colTargets) ?>,
@@ -120,7 +125,7 @@
         /**
          * Crear un registro con vue modal
          */
-        @if(isset($create_modal))
+        @if(isset($create))
             $('#btn_create').click(function () {        
                 app.createModal();
             });
@@ -129,7 +134,7 @@
         /**
          * Editar un registro con vue modal
          */
-        @if(isset($edit_modal))
+        @if(isset($edit))
             $('#btn_edit').click(function () {
                 if (table['{{$table_id}}'].row('.selected').data() == undefined) {
                     SGui.showError("Debe seleccionar un renglón");
