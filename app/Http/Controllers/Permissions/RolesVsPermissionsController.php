@@ -47,6 +47,14 @@ class RolesVsPermissionsController extends Controller
     public function getRolPermissions(Request $request){
         try {
             $lPermissions = PermissionsUtils::getRolePermissions($request->id_rol);
+
+            $json = json_encode($lPermissions);
+            // Decode the JSON string into an array of arrays
+            $lPermissions = json_decode($json, true);
+            foreach ($lPermissions as &$subArray) { // se pasa por referencia para modificar el array original
+                $subArray = array_values($subArray); // se obtiene un array simple con los valores del sub-array
+            }
+            unset($subArray);
         } catch (\Throwable $th) {
             \Log::error($th);
             return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);

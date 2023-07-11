@@ -64,7 +64,7 @@ class AppLinkUtils {
         ]);
 
         $oProvider = \DB::table('users as u')
-                        ->leftJoin('providers as p', 'p.id_provider', '=', 'u.provider_id')
+                        ->join('portaltron.providers as p', 'p.user_id', '=', 'u.id')
                         ->where('u.username', $oUser->username)
                         ->where('u.is_active', 1)
                         ->where('u.is_deleted', 0)

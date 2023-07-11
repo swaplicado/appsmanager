@@ -17,6 +17,13 @@
                 'role': 2,
                 'app_name': 3,
             };
+
+    var indexesPermissionsTable = {
+                'id_permission': 0,
+                'Key': 1,
+                'permiso': 2,
+                'checked': 3,
+            };
 </script>
 @endsection
 
@@ -91,6 +98,13 @@
                                             'select' => true,
                                             'show' => true,
                                         ] )
+
+    @include('layouts.table_jsControll', [
+                                            'table_id' => 'table_permissions',
+                                            'rowGroup' => 1,
+                                            'colTargets' => [0, 1],
+                                            'colTargetsSercheable' => [],
+                                        ] )
     <script>
         var self;
     </script>
@@ -100,5 +114,10 @@
         $(document).ready(function() {
             drawTable('table_RolesVsPermissions', oServerData.lRoles);
         })
+    </script>
+    <script>
+        function updatePermission(id_permission){
+            app.updatePermissions(id_permission);
+        }
     </script>
 @endsection

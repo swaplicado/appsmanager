@@ -41,6 +41,26 @@ var app = new Vue({
 
             await this.getRolPermissions()
                         .then((data) => {
+
+                            drawTable('table_permissions', self.lPermissions);
+                            let elements = [];
+                            for(oPer of self.lPermissions){
+                                elements.push(
+                                    '<div class="checkbox-wrapper-33">' +
+                                        '<label class="checkbox">' +
+                                            '<input id="permission' + oPer[indexesPermissionsTable.id_permission] + '" class="checkbox__trigger visuallyhidden" type="checkbox" '
+                                                + (oPer[indexesPermissionsTable.checked] ? 'checked="true"' : '') + ' onclick="updatePermission(' + oPer[indexesPermissionsTable.id_permission] + ')">' +
+                                            '<span class="checkbox__symbol">' +
+                                                '<svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">' +
+                                                    '<path d="M4 14l8 7L24 7"></path>' +
+                                                '</svg>' +
+                                            '</span>' +
+                                        '</label>' +
+                                    '</div>'
+                                );
+                            }
+
+                            renderInTable('table_permissions', 1, elements);
                             $('#modal_rol_permissions').modal('show');
                         })
                         .catch((error) => {
@@ -75,8 +95,9 @@ var app = new Vue({
             );
         },
 
-        async updatePermissions(id_permission, event){
-            let is_active = event.target.checked;
+        async updatePermissions(id_permission){
+            let is_active = $('#permission'+id_permission).prop('checked');
+            // let is_active = event.target.checked;
             let route = this.oData.updateRoute;
             axios.post(route, {
                 'id_permission': id_permission,

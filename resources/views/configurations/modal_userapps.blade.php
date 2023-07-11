@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" v-if="!is_edit">
+                        <div class="col-md-6" v-show="!is_edit">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Tipo</label>
                                 <div class="col-sm-9">
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-if="lConst.redirectsApps.hasOwnProperty(app_id)">
+                    <div class="row" v-if="lConst.redirectsApps.hasOwnProperty(app_id) && !is_edit">
                         <div class="col-md-12">
                             <ul class="ulColumns3">
                                 <li v-for="oCons in lConst.redirectsApps[app_id]">
@@ -109,7 +109,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-light">Cancelar</button>
+                <button class="btn btn-light" v-on:click="closeModal();">Cancelar</button>
                 <button class="btn btn-primary mr-2" v-on:click="save();">
                     @{{redirect_route == null ? 'Guardar' : 'Guardar y continuar'}}
                 </button>

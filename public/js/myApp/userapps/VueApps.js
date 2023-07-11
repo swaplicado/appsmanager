@@ -16,6 +16,9 @@ var app = new Vue({
         type: null,
         accessApps: [],
         is_edit: false,
+        user_id: null,
+        user_apps: [],
+        lAssignedRoles: [],
         app_id: null,
         roles_ids: [],
         redirect_route: null
@@ -61,18 +64,10 @@ var app = new Vue({
         },
 
         async createModal () {
-            this.modal_title = 'Crear usuario';
-            this.username = null;
-            this.email = null;
-            this.first_name = null;
-            this.last_name = null;
-            this.names = null;
-            this.type = null;
-            this.redirect_route = null;
-            this.app_id = null;
-            this.roles_ids = [];
+            this.cleanData();
+            this.is_edit = false;
 
-            $('#select_rol').empty();
+            this.modal_title = 'Crear usuario';
 
             $('#select_type').val('').trigger('change');
 
@@ -97,27 +92,94 @@ var app = new Vue({
             $('#modal_userapps').modal('show');
         },
 
-        async editModal () {},
+        async editModal (data) {
+            SGui.showWaiting(15000);
+            this.cleanData();
+            
+            this.is_edit = true;
+            this.user_id = data[indexes.user_id];
+            await this.getUser();
+
+            let dataApps = [];
+            for (const oApp of this.user_apps) {
+                dataApps.push({ id: oApp.id_app, text: oApp.name });
+            }
+
+            $('#select_app')
+                .select2({
+                    placeholder: 'Aplicación',
+                    data: dataApps
+                });
+
+            $('#select_app').val('').trigger('change');
+
+            $('#select_app').on('select2:select', function (e) {
+                    self.app_id = e.params.data.id;
+                    self.getRolesApp();
+                    self.redirect_route = null;
+                });
+
+            $('#modal_userapps').modal('show');
+            Swal.close();
+        },
+
+        getUser(){
+            return new Promise((resolve, reject) => 
+                axios.post(oData.getUserRoute,{
+                    'user_id': this.user_id,
+                })
+                .then(result => {
+                    let data = result.data;
+                    if(data.success){
+                        this.user_id = data.oUser.id;
+                        this.username = data.oUser.username;
+                        this.email = data.oUser.email;
+                        this.first_name = data.oUser.first_name;
+                        this.last_name = data.oUser.last_name;
+                        this.names = data.oUser.names;
+                        this.user_apps = data.lApps;
+                        this.roles_ids = [];
+                        resolve('ok');
+                    }else{
+                        SGui.showMessage('', data.message, data.icon);
+                        reject('error');
+                    }
+                })
+                .catch(function(error){
+                    console.log(error);
+                    SGui.showError(error);
+                    reject('error');
+                })
+            );
+        },
 
         getRolesApp () {
+            $('#select_rol').empty();
             axios
                 .post(oData.getRolesAppRoute, {
-                    app_id: this.app_id
+                    app_id: self.app_id,
+                    user_id: self.user_id,
                 })
                 .then(result => {
                     let data = result.data;
                     if (data.success) {
+                        this.lAssignedRoles = data.lAssignedRoles;
+
                         $('#select_rol')
                             .select2({
                                 placeholder: 'Rol(es)',
                                 data: data.lRoles
                             })
-                            .on('select2:select', function (e) {
+                            .on('change', function (e) {
                                 self.roles_ids = $(this).val();
                             })
-                            .on('select2:unselect', function (e) {
-                                self.roles_ids = $(this).val();
-                            })
+
+                        if(this.is_edit){
+                            if(this.lAssignedRoles.length > 0){
+                                let ids = this.lAssignedRoles.map((object) => object.role_id);
+                                $('#select_rol').val(ids).trigger('change');
+                            }
+                        }
                     } else {
                         SGui.showMessage('', data.message, data.icon);
                     }
@@ -156,12 +218,12 @@ var app = new Vue({
                 return [false, message];
             }
 
-            if (!this.type) {
+            if (!this.type && !this.is_edit) {
                 message = 'Debe introducir el tipo de usuario. ';
                 return [false, message];
             }
 
-            if (this.roles_ids.length < 1) {
+            if (this.roles_ids.length < 1 && !this.is_edit) {
                 message = 'Debe introducir por lo menos un rol ';
                 return [false, message];
             }
@@ -178,7 +240,7 @@ var app = new Vue({
             }
 
             SGui.showWaiting(15000);
-            let route = oData.createUserRoute;
+            let route = !this.is_edit ? oData.createUserRoute : oData.updateUserRoute;
 
             axios
                 .post(route, {
@@ -190,12 +252,14 @@ var app = new Vue({
                     type: this.type,
                     app_id: this.app_id,
                     roles_ids: this.roles_ids,
+                    user_id: this.user_id,
                 })
                 .then(result => {
                     let data = result.data;
                     if (data.success) {
                         this.lUsers = data.lUsers;
                         SGui.showOk();
+                        $('#modal_userapps').modal('hide');
                         if(!!this.redirect_route){
                             window.open(this.redirect_route, '_blank');
                         }
@@ -209,6 +273,56 @@ var app = new Vue({
                 })
         },
 
-        delete () {}
+        deleteRegistry (data) {
+            Swal.fire({
+                title: '¿Desea eliminar el usuario ' + data[indexes.username] + ' ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.deleteUser(data[indexes.user_id]);
+                }
+            })
+        },
+
+        deleteUser(user_id){
+            SGui.showWaiting(15000);
+            let route = oData.deleteUserRoute;
+            axios.post(route, {
+                'user_id': user_id,
+            })
+            .then(result => {
+                let data = result.data;
+                if(data.success){
+                    this.lUsers = data.lUsers;
+                    SGui.showOk();
+                }else{
+                    SGui.showMessage('', data.message, data.icon);
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+                SGui.showError(error);
+            })
+        },
+
+        cleanData(){
+            this.modal_title = null;
+            this.username = null;
+            this.email = null;
+            this.first_name = null;
+            this.last_name = null;
+            this.names = null;
+            this.type = null;
+            this.redirect_route = null;
+            this.app_id = null;
+            this.roles_ids = [];
+
+            $('#select_app').empty();
+            $('#select_rol').empty();
+        }
     }
 })

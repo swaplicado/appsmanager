@@ -38,11 +38,16 @@ class PermissionsUtils {
 
         $lPermissions = $assignPermissions->merge($unsignedPermissions);
 
-        foreach ($keys as $k) {
-            $k->permissions = $lPermissions->where('key_code', $k->key_code);
-        }
+        // foreach ($keys as $k) {
+        //     $k->permissions = $lPermissions->where('key_code', $k->key_code);
+        // }
 
-        return $keys;
+        $lPermissions->map( function($item){
+            $item->checked = $item->checked == 0 ? false : true;
+            return $item;
+        });
+
+        return $lPermissions;
     }
 
     public static function getUserPermission($user_id){

@@ -131,6 +131,54 @@ class ManagerController extends Controller
             \DB::commit();
         } catch (\Throwable $th) {
             \DB::rollBack();
+            \Log::error($th);
+            return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);
+        }
+
+        return json_encode(['success' => true, 'lUsers' => $lUsers]);
+    }
+
+    public function updateUser(Request $request){
+        try {
+            $user_id = $request->user_id;
+            $username = $request->username;
+            $email = $request->email;
+            $first_name = $request->first_name;
+            $last_name = $request->last_name;
+            $names = $request->names;
+            $app_id = $request->app_id;
+            $roles_ids = $request->roles_ids;
+
+            \DB::beginTransaction();
+
+            $oUser = User::findOrFail($user_id);
+            $oUser->username = $username;
+            $oUser->email = $email;
+            $oUser->first_name = $first_name;
+            $oUser->last_name = $last_name;
+            $oUser->names = $names;
+            $oUser->update();
+
+            if(!is_null($app_id)){
+                UserRoles::where('app_n_id', $app_id)
+                        ->where('user_id', $user_id)
+                        ->delete();
+    
+                foreach ($roles_ids as $rol) {
+                    $oRole = new UserRoles();
+                    $oRole->app_n_id = $app_id;
+                    $oRole->user_id = $oUser->id;
+                    $oRole->role_id = $rol;
+                    $oRole->save();
+                }
+            }
+
+            $data = $this->getIndexData();
+            $lUsers = $data['lUsers'];
+
+            \DB::commit();
+        } catch (\Throwable $th) {
+            \DB::rollBack();
             return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);
         }
 
@@ -140,6 +188,7 @@ class ManagerController extends Controller
     public function getRolesApp(Request $request){
         try {
             $lRoles = RolesUtils::getRolesApp($request->app_id);
+            $lAssignedRoles = RolesUtils::getAssignedRolesApp($request->app_id, $request->user_id);
             
             $arrRol  = [];
             foreach($lRoles as $rol){
@@ -147,9 +196,76 @@ class ManagerController extends Controller
             }
 
         } catch (\Throwable $th) {
+            \Log::error($th);
             return json_encode(['success' => false, 'message' => $th->getMessage()]);
         }
 
-        return json_encode(['success' => true, 'lRoles' => $arrRol]);
+        return json_encode(['success' => true, 'lRoles' => $arrRol, 'lAssignedRoles' => $lAssignedRoles]);
+    }
+
+    public function getUser(Request $request){
+        try {
+            $oUser = \DB::table('users as u')
+                        ->leftJoin('adm_user_apps as ua', 'ua.user_id', '=', 'u.id')
+                        ->where('u.id', $request->user_id)
+                        ->where('u.is_active', 1)
+                        ->where('u.is_deleted', 0)
+                        ->select(
+                            'u.id',
+                            'u.username',
+                            'u.email',
+                            'u.first_name',
+                            'u.last_name',
+                            'u.names',
+                        )
+                        ->first();
+
+            $lApps = \DB::table('adm_apps as a')
+                        ->join('adm_user_apps as ua', 'ua.app_id', '=', 'a.id_app')
+                        ->where('ua.user_id', $oUser->id)
+                        ->get();
+
+        } catch (\Throwable $th) {
+            \Log::error($th);
+            return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);
+        }
+
+        return json_encode(['success' => true, 'oUser' => $oUser, 'lApps' => $lApps]);
+    }
+
+    public function deleteUser(Request $request){
+        try {
+            $user_id = $request->user_id;
+            \DB::beginTransaction();
+
+            $oUser = User::findOrFail($user_id);
+            $oUser->is_deleted = 1;
+            $oUser->is_active = 0;
+            $oUser->update();
+
+            $lReferences = \DB::table('adm_apps as a')
+                            ->join('adm_user_apps as ua', 'ua.app_id', '=', 'a.id_app')
+                            ->leftJoin('users_references as ur', 'ur.app_id', '=', 'a.id_app')
+                            ->where('ua.user_id', $user_id)
+                            ->get();
+
+            foreach ($lReferences as $ref) {
+                \DB::table($ref->reference)
+                    ->where($ref->foreing_column, $user_id)
+                    ->update([$ref->deleted_column => 1]);
+                    
+            }
+
+            $data = $this->getIndexData();
+            $lUsers = $data['lUsers'];
+            
+            \DB::commit();
+        } catch (\Throwable $th) {
+            \DB::rollBack();
+            \Log::error($th);
+            return json_encode(['success' => false, 'message' => $th->getMessage(), 'icon' => 'error']);
+        }
+
+        return json_encode(['success' => true, 'lUsers' => $lUsers]);
     }
 }

@@ -31,6 +31,12 @@ class Menu
             ];
         }
 
+        if (in_array(2, $roles)) {
+            $lMenus = [
+                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Home'],
+            ];
+        }
+
         $sMenu = "";
         foreach ($lMenus as $menu) {
             if ($menu == null) {
