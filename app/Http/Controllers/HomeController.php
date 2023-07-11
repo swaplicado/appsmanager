@@ -33,6 +33,11 @@ class HomeController extends Controller
 
         $lApps = $lApps->get();
 
+        if(count($lApps) == 1){
+            $app = $lApps->first();
+            return redirect()->to($app->app_url);
+        }
+
         return view('home')->with('lApps', $lApps);
     }
 }

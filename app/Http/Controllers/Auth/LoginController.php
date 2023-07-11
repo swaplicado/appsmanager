@@ -89,24 +89,11 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
 
-        if (in_array(2, $aRoles)) {
-            $data = AppLinkUtils::checkUserInAppLink((object)$userCredentials);
-            if(!is_null($data)){
-                if($data->code != 200){
-                    return redirect()->route('login')->with('message', $data->message);
-                }
-                
-                if($data->b_del){
-                    return redirect(route('login'))->with('message', 'El proveedor no se encuentra en activo');
-                }
-
-            }else{
-                return redirect(route('login'))->with('message', 'AppLink no responde');
-            }
-        }
-
         if (Auth::attempt($userCredentials)) {
             $this->authenticated($request, Auth::user());
+
+            session()->put('provider_checked', false);
+
             return redirect()->route('home');
         }
         else {
