@@ -94,7 +94,7 @@
   <!-- Plugin js for this page -->
   <script src="{{asset('varios/chart.js/Chart.min.js')}}"></script>
   <!-- Datatables js -->
-    <script src="{{asset('datatables/dataTables.js')}}"></script>
+    <script src="{{asset('datatables/datatables.js')}}"></script>
     <script src="{{asset('varios/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
   <!-- End datatables js -->
 
