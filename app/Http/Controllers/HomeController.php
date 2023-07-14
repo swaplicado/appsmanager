@@ -33,7 +33,7 @@ class HomeController extends Controller
 
         $lApps = $lApps->get();
 
-        if(count($lApps) == 1){
+        if(count($lApps) == 1 && !\Auth::user()->isAdmin()){
             $app = $lApps->first();
             return redirect()->to($app->app_url);
         }
