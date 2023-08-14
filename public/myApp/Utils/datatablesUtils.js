@@ -15,3 +15,28 @@ function renderInTable(table_name, column, elements){
         checkBoxTd.html(elements[rowIdx]);
       });
 }
+
+function reDrawTable(nameTable, jsonData, ...keys){
+    if(jsonData != null){
+        try {
+            var arrayData = [];
+            
+            jsonData.forEach(function(item) {
+                var newItem = {};
+                
+                keys.forEach(function(key) {
+                    newItem[key] = item[key];
+                });
+                
+                arrayData.push(newItem);
+            });
+    
+            table[nameTable].clear().draw();
+            table[nameTable].rows.add(arrayData).draw();
+        } catch (error) {
+            location.reload();
+        }
+    }else{
+        table[nameTable].draw();
+    }
+}

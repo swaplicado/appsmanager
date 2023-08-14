@@ -11,7 +11,8 @@ class SysConst {
      * Constantes de la table adm_roles para la app proveedores
      */
     public const proveedores_roles = [
-        'PROVEEDOR' => 2
+        'PROVEEDOR' => 2,
+        'AUTORIZADOR' => 3
     ];
 
      /**

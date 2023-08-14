@@ -109,7 +109,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-light" v-on:click="closeModal();">Cancelar</button>
+                <button class="btn btn-light" data-dismiss="modal">Cancelar</button>
                 <button class="btn btn-primary mr-2" v-on:click="save();">
                     @{{redirect_route == null ? 'Guardar' : 'Guardar y continuar'}}
                 </button>

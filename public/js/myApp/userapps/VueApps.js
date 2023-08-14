@@ -257,12 +257,14 @@ var app = new Vue({
                 .then(result => {
                     let data = result.data;
                     if (data.success) {
-                        this.lUsers = data.lUsers;
+                        // this.lUsers = data.lUsers;
+                        // reDrawTable('user_apps_table', this.lUsers, 'id', 'username');
                         SGui.showOk();
                         $('#modal_userapps').modal('hide');
                         if(!!this.redirect_route){
                             window.open(this.redirect_route, '_blank');
                         }
+                        location.reload();
                     } else {
                         SGui.showMessage('', data.message, data.icon);
                     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\SysConst;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -57,6 +58,30 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'adm_user_roles','user_id', 'role_id');
+    }
+
+    public function getApps(){
+        return $this->belongsToMany(Apps::class, 'adm_user_apps', 'user_id', 'app_id');
+    }
+
+    public function is_provider(){
+        $rol = SysConst::proveedores_roles['PROVEEDOR'];
+
+        $aRoles = $this->roles()
+                    ->pluck('role_id')
+                    ->toArray();
+
+        return in_array($rol, $aRoles);
+    }
+
+    public function is_authorizer(){
+        $rol = SysConst::proveedores_roles['PROVEEDOR'];
+
+        $aRoles = $this->roles()
+                    ->pluck('role_id')
+                    ->toArray();
+
+        return in_array($rol, $aRoles);
     }
 
     public function permissions()
