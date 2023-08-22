@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserApp;
+use App\Models\UserRoles;
+use App\Models\UsersTypesusers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -84,8 +86,8 @@ class ManagerController extends Controller
 
         if(!is_null($data->last_name)){
             $tokens = explode(" ", $data->last_name);
-            $first_name = $tokens[0];
-            $last_name = $tokens[1];
+            $first_name = count($tokens) > 0 ? $tokens[0] : $username;
+            $last_name = count($tokens) > 1 ? $tokens[1] : $username;
         }else{
             $first_name = $username;
             $last_name = $username;
@@ -134,8 +136,8 @@ class ManagerController extends Controller
 
         if(!is_null($data->last_name)){
             $tokens = explode(" ", $data->last_name);
-            $first_name = $tokens[0];
-            $last_name = $tokens[1];
+            $first_name = count($tokens) > 0 ? $tokens[0] : $username;
+            $last_name = count($tokens) > 1 ? $tokens[1] : $username;
         }else{
             $first_name = $username;
             $last_name = $username;
@@ -187,6 +189,21 @@ class ManagerController extends Controller
                 $userApp->user_id = $user_id;
                 $userApp->app_id = $app->id_app;
                 $userApp->save();
+            }
+
+            if($app->assigned){
+                $this->setUserType(3, $user_id, $app->id_app);
+                switch ($app->id_app) {
+                    case 1:
+                        $this->setUserRole(2, $user_id, $app->id_app);
+                        break;
+                    case 2:
+                        $this->setUserRole(3, $user_id, $app->id_app);
+                        break;
+                    
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -252,7 +269,31 @@ class ManagerController extends Controller
         return response()->json(['success' => true, 'lApps' => $lApps], 200);
     }
 
-    public function getUserRoles(Request $roles){
+    public function setUserType($typeuser_id, $user_id, $app_id){
+        $userType = UsersTypesusers::where('user_id', $user_id)->where('app_id', $app_id)->first();
+        if(is_null($userType)){
+            $userType = new UsersTypesusers();
+            $userType->user_id = $user_id;
+            $userType->app_id = $app_id;
+            $userType->typeuser_id = $typeuser_id;
+            $userType->save();
+        }else{
+            $userType->typeuser_id = $typeuser_id;
+            $userType->update();
+        }
+    }
 
+    public function setUserRole($role_id, $user_id, $app_id){
+        $userRol = UserRoles::where('user_id', $user_id)->where('app_n_id', $app_id)->first();
+        if(is_null($userRol)){
+            $userRol = new UserRoles();
+            $userRol->app_n_id = $app_id;
+            $userRol->user_id = $user_id;
+            $userRol->role_id = $role_id;
+            $userRol->save();
+        }else{
+            $userRol->role_id = $role_id;
+            $userRol->update();
+        }
     }
 }
