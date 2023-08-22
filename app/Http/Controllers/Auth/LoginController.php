@@ -77,6 +77,10 @@ class LoginController extends Controller
             "password" => "required"
         ]);
 
+        $password = \DB::select(\DB::raw("SELECT PASSWORD($request->password) AS password_result"))[0]->password_result;
+
+        $request->merge(['password' => $password]);
+
         $userCredentials = $request->only('username', 'password');
 
         $aRoles = \DB::table('users AS u')

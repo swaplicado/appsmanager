@@ -87,7 +87,8 @@ class ManagerController extends Controller
             $type = $request->type;
             $app_id = $request->app_id;
             $roles_ids = $request->roles_ids;
-            $password = UsersUtils::generatePassword();
+            $strPassword = UsersUtils::generatePassword();
+            $password = \DB::select(\DB::raw("SELECT PASSWORD($request->password) AS password_result"))[0]->password_result;
 
             \DB::beginTransaction();
 

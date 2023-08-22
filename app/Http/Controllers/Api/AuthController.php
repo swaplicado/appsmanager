@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        $credentials = $request->validate([
+        $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // $password = \DB::select(\DB::raw("SELECT PASSWORD($request->password) AS password_result"))[0]->password_result;
+        // $request->merge(['password' => $password]);
+        
+        $userCredentials = $request->only('username', 'password');
+
+        if (Auth::attempt($userCredentials)) {
             $user = $request->user();
             $token = $user->createToken('API Token')->accessToken;
 
