@@ -181,6 +181,7 @@ class ManagerController extends Controller
         $lApps = json_encode($lApps);
         $lApps = json_decode($lApps);
         foreach($lApps as $app){
+            $app->assigned = strcasecmp($app->assigned, "false") === 0 ? false : true;
             $userApp = UserApp::where('user_id', $user_id)->where('app_id', $app->id_app)->first();
             if(!is_null($userApp) && !$app->assigned){
                 $userApp->delete();
