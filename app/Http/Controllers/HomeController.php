@@ -23,15 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lApps = \DB::table('adm_apps AS a')
-                    ->leftJoin('adm_user_apps AS ua', 'ua.app_id', '=', 'a.id_app')
-                    ->where('a.is_active', true);
+        $lApps = \DB::table('adm_apps AS a');
 
         if (! \Auth::user()->isAdmin()) {
-            $lApps = $lApps->where('ua.user_id', \Auth::user()->id);
+            $lApps = $lApps->where('ua.user_id', \Auth::user()->id)
+                        ->leftJoin('adm_user_apps AS ua', 'ua.app_id', '=', 'a.id_app');
         }
 
-        $lApps = $lApps->get();
+        $lApps = $lApps->where('a.is_active', true)
+                        ->get();
 
         if(count($lApps) == 1 && !\Auth::user()->isAdmin()){
             $app = $lApps->first();
