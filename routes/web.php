@@ -49,7 +49,7 @@ Route::middleware(['auth', 'menu'])->group( function () {
     Route::post('/usersvspermissions/delete', [UsersVsPermissionsController::class, 'delete'])->name('usersvspermissions_delete');
 });
 
-Route::group(['middleware' => 'auth', 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {
+Route::group(['middleware' => ['auth', 'menu'], 'namespace' => 'Config', 'as' => 'config.', 'prefix' => 'config'], function () {
     Route::get('/userapps', [ManagerController::class, 'userapps'])->name('userapps');
     Route::post('/userapps', [ManagerController::class, 'updateAccess'])->name('upd_user_app');
     Route::post('/getUser', [ManagerController::class, 'getUser'])->name('getUser');
