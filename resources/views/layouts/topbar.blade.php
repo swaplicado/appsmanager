@@ -49,10 +49,10 @@
           <!-- Perfil -->
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('images/faces/face28.jpg')}}" alt="profile"/>
+              <img src="{{ !is_null(\Auth::user()->img_path) ? asset(\Auth::user()->img_path) : 'ImagesProfiles/default.png'}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a href="{{ route('profile.profile') }}" class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Mi perfil
               </a>

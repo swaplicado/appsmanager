@@ -28,6 +28,7 @@ class User extends Authenticatable
         'last_name',
         'names',
         'full_name',
+        'img_path',
         'is_active',
         'is_deleted',
         'created_by',

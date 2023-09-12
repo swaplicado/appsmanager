@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Config\ManagerController;
 use App\Http\Controllers\Permissions\RolesVsPermissionsController;
 use App\Http\Controllers\Permissions\UsersVsPermissionsController;
+use App\Http\Controllers\Users\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,9 @@ Route::group(['middleware' => ['auth', 'menu'], 'namespace' => 'Config', 'as' =>
     Route::post('/getRolesApp', [ManagerController::class, 'getRolesApp'])->name('getRolesApp');
     Route::post('/update', [ManagerController::class, 'updateUser'])->name('updateUser');
     Route::post('/delete', [ManagerController::class, 'deleteUser'])->name('deleteUser');
+});
+
+Route::group(['middleware' => ['auth', 'menu'], 'as' => 'profile.'], function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('update');
 });
