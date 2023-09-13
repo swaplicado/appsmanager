@@ -16,7 +16,7 @@ class Menu
 
         if (in_array(1, $roles)) {
             $lMenus = [
-                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Home'],
+                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Inicio'],
                 (object) [
                     'type' => $list,
                     'list' => [
@@ -33,13 +33,13 @@ class Menu
 
         if (in_array(2, $roles)) {
             $lMenus = [
-                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Home'],
+                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Inicio'],
             ];
         }
 
         if (in_array(3, $roles)) {
             $lMenus = [
-                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Home'],
+                (object) ['type' => $element, 'route' => route('home'), 'icon' => 'bx bx-home bx-sm', 'name' => 'Inicio'],
             ];
         }
 
