@@ -96,12 +96,12 @@ class LoginController extends Controller
         if (Auth::attempt($userCredentials)) {
             $this->authenticated($request, Auth::user());
 
-            if(Auth::user()->is_provider()){
-                session()->put('provider_checked', false);
-                session()->put('is_provider', true);
-            }else{
-                session()->put('is_provider', false);
-            }
+            // if(Auth::user()->is_provider()){
+            //     session()->put('provider_checked', false);
+            //     session()->put('is_provider', true);
+            // }else{
+            //     session()->put('is_provider', false);
+            // }
 
 
             return redirect()->route('home');
