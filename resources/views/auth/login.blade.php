@@ -58,7 +58,9 @@
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Continuar</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
-                  <a href="#" class="auth-link text-black">¿Olvidaste la contraseña?</a>
+                  @if (Route::has('password.request'))
+                      <a href="{{ route('password.request') }}" class="auth-link text-black">¿Olvidaste la contraseña?</a>
+                  @endif
                 </div>
               </form>
             </div>
