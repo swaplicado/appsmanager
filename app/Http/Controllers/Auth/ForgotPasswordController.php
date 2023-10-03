@@ -51,8 +51,8 @@ class ForgotPasswordController extends Controller
         );
 
         return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($request, $response)
-                    : $this->sendResetLinkFailedResponse($request, $response);
+                    ? $this->sendResetLinkResponse($request, 'Email enviado con éxito, si no encuentra el email en su bandeja de entrada, revise su bandeja de spam')
+                    : $this->sendResetLinkFailedResponse($request, 'No se encontró al usuario');
     }
 
     protected function validateEmail(Request $request)

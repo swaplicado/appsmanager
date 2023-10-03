@@ -57,9 +57,10 @@
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Continuar</button>
                 </div>
+                <br>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   @if (Route::has('password.request'))
-                      <a href="{{ route('password.request') }}" class="auth-link text-black">¿Olvidaste la contraseña?</a>
+                      <a href="{{ route('password.request') }}" class="auth-link text-black" onclick="SGui.showWaitingUnlimit()">¿Olvidaste la contraseña?</a>
                   @endif
                 </div>
               </form>
@@ -88,10 +89,29 @@
 @if(session('message') != null)
     <script>
       let Message = "<?php echo session('message') ?>";
+      let icon = "<?php echo session('icon') ?>";
       $(document).ready(function () {
-          showMessage(Message);
+        icon != '' ? icon : 'info';
+        SGui.showMessage('', Message, icon);
       });
     </script>
 @endif
+<script>
+  function disableSubmitButton(form) {
+      form.addEventListener('submit', function() {
+          // Disable the submit button to prevent multiple submissions
+          var submitButton = form.querySelector('[type="submit"]');
+          if (submitButton) {
+              submitButton.disabled = true;
+              SGui.showWaitingUnlimit();
+          }
+      });
+  }
+
+  $(document).ready(function () {
+      var form = document.getElementById('login_form');
+      disableSubmitButton(form);
+  });
+</script>
 </body>
 </html>

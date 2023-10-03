@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use App\Constants\SysConst;
+use App\Notifications\PasswordReset;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 
 class User extends Authenticatable
@@ -98,5 +102,9 @@ class User extends Authenticatable
                     ->toArray();
 
         return in_array(1, $aRoles);
+    }
+
+    public function sendPasswordResetNotification($token){
+        Notification::route('mail', $this->email)->notify(new PasswordReset($token));
     }
 }

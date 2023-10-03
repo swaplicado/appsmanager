@@ -38,8 +38,6 @@
     <script type="text/javascript" src="{{ asset('vue/vue.js') }}"></script>
     <script src="{{ asset('sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/myApp/gui/SGui.js') }}"></script>
-    <script src="{{ asset('moment/moment.js') }}"></script>
-    <script src="{{ asset('moment/moment-with-locales.js') }}"></script>
     <!-- Header scripts section -->
     <!-- end Header scripts section-->
     <!-- End header scripts -->
@@ -88,7 +86,7 @@
                                         @endif
                                         <div class="card">
                                             <div class="card-body">
-                                                <form method="POST" action="{{ route('password.update') }}">
+                                                <form method="POST" action="{{ route('password.update') }}" id="reset_form">
                                                     @csrf
                             
                                                     <input type="hidden" name="token" value="{{ $token }}">
@@ -172,6 +170,23 @@
         <!-- JS section -->
         @yield('scripts')
         <!-- End JS section -->
+        <script>
+            function disableSubmitButton(form) {
+                form.addEventListener('submit', function() {
+                    // Disable the submit button to prevent multiple submissions
+                    var submitButton = form.querySelector('[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        SGui.showWaitingUnlimit();
+                    }
+                });
+            }
+          
+            $(document).ready(function () {
+                var form = document.getElementById('reset_form');
+                disableSubmitButton(form);
+            });
+          </script>
 
         <script>
             window.onload = function() {

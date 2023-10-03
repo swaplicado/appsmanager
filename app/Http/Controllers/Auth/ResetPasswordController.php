@@ -56,6 +56,12 @@ class ResetPasswordController extends Controller
      */
     public function reset(Request $request)
     {
+        if($request->password != $request->password_confirmation){
+            return $this->sendResetFailedResponse($request, 'Las contraseñas deben coincidir');
+        }else if (strlen($request->password) < 8){
+            return $this->sendResetFailedResponse($request, 'Las contraseñas debe tener al menos 8 caracteres');
+        }
+
         $password = \DB::select(\DB::raw("SELECT PASSWORD('$request->password') AS password_result"))[0]->password_result;
         $request->merge(['password' => $password]);
 
@@ -78,7 +84,7 @@ class ResetPasswordController extends Controller
         // redirect them back to where they came from with their error message.
         return $response == Password::PASSWORD_RESET
                     ? $this->sendResetResponse($request, $response)
-                    : $this->sendResetFailedResponse($request, $response);
+                    : $this->sendResetFailedResponse($request, 'Usuario incorrecto');
     }
 
     /**
@@ -92,6 +98,7 @@ class ResetPasswordController extends Controller
             'token' => 'required',
             'username' => 'required',
             'password' => 'required',
+            'password_confirmation' => 'required',
         ];
     }
 
@@ -153,6 +160,7 @@ class ResetPasswordController extends Controller
     {
         return redirect()->route('login')->with('status', trans($response))
                                         ->with('success', true)
-                                        ->with('message', 'Contraseña actualizada');
+                                        ->with('message', 'Contraseña actualizada')
+                                        ->with('icon', 'success');
     }
 }
