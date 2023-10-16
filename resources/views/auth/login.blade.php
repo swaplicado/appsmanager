@@ -58,10 +58,15 @@
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Continuar</button>
                 </div>
                 <br>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  @if (Route::has('password.request'))
-                      <a href="{{ route('password.request') }}" class="auth-link text-black" onclick="SGui.showWaitingUnlimit()">¿Olvidaste la contraseña?</a>
-                  @endif
+                <div class="row">
+                  <div class="my-2 d-flex justify-content-between align-items-center col-md-6">
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="auth-link text-black" onclick="SGui.showWaitingUnlimit()">¿Olvidaste la contraseña?</a>
+                    @endif
+                  </div>
+                  <div class="my-2 justify-content-between align-items-center col-md-6">
+                      <a href="{{ $registerProviderRoute }}" class="auth-link text-black f-right">Registrarse como proveedor</a>
+                  </div>
                 </div>
               </form>
             </div>

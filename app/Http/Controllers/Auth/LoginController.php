@@ -119,6 +119,7 @@ class LoginController extends Controller
     }
 
     public function showLoginForm($route = null, $idApp = null){
-        return view('auth.login');
+        $registerProviderRoute = \App\Utils\Configuration::getConfigurations()->registerProviderRoute;
+        return view('auth.login')->with('registerProviderRoute', $registerProviderRoute);
     }
 }

@@ -30800,3 +30800,9 @@ div.tagsinput span.tag a {
 .drop-container:hover .drop-title {
   color: #222;
 }
+
+@media screen and (min-width: 768px) {
+  .f-right {
+    float: right !important;
+  }
+}
