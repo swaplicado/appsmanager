@@ -88,14 +88,14 @@ class ManagerController extends Controller
             $app_id = $request->app_id;
             $roles_ids = $request->roles_ids;
             $strPassword = UsersUtils::generatePassword();
-            $password = \DB::select(\DB::raw("SELECT PASSWORD($request->password) AS password_result"))[0]->password_result;
+            $password = \DB::select(\DB::raw("SELECT PASSWORD('".$username."') AS password_result"))[0]->password_result;
 
             \DB::beginTransaction();
 
             $oUser = new User();
             $oUser->username = $username;
             $oUser->email = $email;
-            $oUser->password = $password;
+            $oUser->password = \Hash::make($password);
             $oUser->first_name = strtoupper($first_name);
             $oUser->last_name = strtoupper($last_name);
             $oUser->names = strtoupper($names);
