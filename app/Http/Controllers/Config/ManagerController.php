@@ -34,6 +34,7 @@ class ManagerController extends Controller
 
         $lTypes = \DB::table('adm_typesuser')
                     ->where('id_typesuser', '!=', 1)
+                    ->where('is_active', 1)
                     ->orderBy('id_typesuser', 'desc')
                     ->get()
                     ->toArray();
