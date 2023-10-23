@@ -32,7 +32,7 @@
               <div class="brand-logo">
                 <img src="{{asset('images/aeth.png')}}" alt="logo">
               </div>
-              <h4>Hola! vamos a comenzar</h4>
+              <h4>¡Hola! Vamos a comenzar</h4>
               <h6 class="font-weight-light">Inicia sesión para continuar.</h6>
               <form id="login_form" class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
