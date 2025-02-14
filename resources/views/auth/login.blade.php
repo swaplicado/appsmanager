@@ -38,7 +38,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputEmail1">Usuario</label>
-                  <input class="form-control form-control-lg @error('username') is-invalid @enderror" id="exampleInputEmail1" placeholder="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  <input class="form-control form-control-lg @error('username') is-invalid @enderror" id="exampleInputEmail1" placeholder="nombre de usuario" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                   @error('username')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
