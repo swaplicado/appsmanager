@@ -13,6 +13,8 @@ class Menu
         }
 
         $roles = $oUser->roles()->pluck('id_role')->toArray();
+        
+        $lMenus = [];
 
         if (in_array(1, $roles)) {
             $lMenus = [
