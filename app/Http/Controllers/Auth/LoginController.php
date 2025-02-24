@@ -5,14 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Http\Controllers\Sys\SyncController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use GuzzleHttp\Client;
-use GuzzleHttp\Request as GuzzleRequest;
-use GuzzleHttp\Exception\RequestException;
-use App\Utils\AppLinkUtils;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -77,7 +73,14 @@ class LoginController extends Controller
             "password" => "required"
         ]);
 
-        $password = \DB::select(\DB::raw("SELECT PASSWORD('$request->password') AS password_result"))[0]->password_result;
+        // Ejecutar la consulta de manera segura con parámetros enlazados
+        $passwordQuery = DB::select(
+            DB::raw("SELECT PASSWORD(:password) AS password_result"),
+            ['password' => $request->password]
+        );
+
+        // Extraer el resultado de la consulta
+        $password = $passwordQuery[0]->password_result ?? null;
 
         $request->merge(['password' => $password]);
 

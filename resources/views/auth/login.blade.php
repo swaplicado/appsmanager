@@ -10,11 +10,13 @@
   <link rel="stylesheet" href="{{asset('varios/feather/feather.css')}}">
   <link rel="stylesheet" href="{{asset('varios/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" href="{{asset('varios/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{ asset('boxicons/css/boxicons.min.css') }}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <link href="{{ asset('css/loginstyle.css') }}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
 
@@ -47,7 +49,13 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Contraseña</label>
-                  <input type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" id="exampleInputPassword1" placeholder="Contraseña" name="password" required autocomplete="current-password">
+                  <div class="input-group">
+                    <input type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" 
+                            id="password" placeholder="Contraseña" name="password" required autocomplete="current-password">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="togglePassword">
+                      <i class='bx bx-show bx-sm'></i>
+                    </button>
+                  </div>
                   @error('password')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -116,6 +124,23 @@
   $(document).ready(function () {
       var form = document.getElementById('login_form');
       disableSubmitButton(form);
+  });
+</script>
+<script>
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const icon = this.querySelector('i');
+
+    // Alternar entre tipo "password" y "text"
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('bx-show');
+        icon.classList.add('bx-hide'); // Cambiar el ícono a "ojo tachado"
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('bx-hide');
+        icon.classList.add('bx-show'); // Cambiar el ícono a "ojo"
+    }
   });
 </script>
 </body>
