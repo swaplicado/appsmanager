@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\ManagerController;
+use App\Http\Controllers\Api\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use App\Http\Controllers\Api\ManagerController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/**
+ * Login route
+ */
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -24,7 +27,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->group(function () {
+    /**
+     * Logout route
+     */
+    Route::post('logout', [AuthController::class, 'logout']);
     // Your protected API routes go here
     Route::post('registerUser', [ManagerController::class, 'registerUser']);
     Route::post('getUserApps', [ManagerController::class, 'getUserApps']);
+
+    Route::get('prueba', [TestController::class, 'prueba']);
 });
