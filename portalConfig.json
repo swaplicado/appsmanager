@@ -1,5 +1,6 @@
 {
     "AppLinkRoute": "127.0.0.1:9002",
     "AppLinkRouteLogin": "login",
-    "AppLinkRouteProviderFind": "providers/find"
+    "AppLinkRouteProviderFind": "providers/find",
+    "registerProviderRoute": "https://aeth.siieapp.com/portalproveedores/public/sprovider/registerProvider"
 }
