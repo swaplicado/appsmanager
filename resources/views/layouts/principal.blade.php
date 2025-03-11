@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <!-- End CSS principal -->
   <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('images/iconIphone.png')}}">
   @yield('headStyles')
 
   <script src="{{ asset('sweetalert2/dist/sweetalert2.all.min.js') }}"></script>

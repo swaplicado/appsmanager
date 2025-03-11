@@ -1,0 +1,76 @@
+[14-Jul-2023 09:36:01 America/Mexico_City] PHP Warning:  require(/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php): Failed to open stream: No such file or directory in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 09:36:01 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 09:36:10 America/Mexico_City] PHP Warning:  require(/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php): Failed to open stream: No such file or directory in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 09:36:10 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 09:38:15 America/Mexico_City] PHP Warning:  require(/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php): Failed to open stream: No such file or directory in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 09:38:15 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home1/siieappc/aeth.siieapp.com/appsmanager/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan:18
+Stack trace:
+#0 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/artisan on line 18
+[14-Jul-2023 12:21:45 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:21:45 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:21:45 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:21:45 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:21:55 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:22:00 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:22:00 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:22:00 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:22:00 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 12:22:04 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[22-Aug-2023 11:38:42 America/Mexico_City] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home1/siieappc/aeth.siieapp.com/appsmanager/vendor/composer/platform_check.php on line 24
+[22-Aug-2023 11:43:35 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:44:35 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:45:44 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:45:48 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:46:56 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:48:01 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:50:04 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:55:40 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:55:53 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14
+[22-Aug-2023 11:59:51 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php:14
+Stack trace:
+#0 /home1/siieappc/aeth.siieapp.com/appsmanager/artisan(20): require_once()
+#1 {main}
+  thrown in /home1/siieappc/aeth.siieapp.com/appsmanager/bootstrap/app.php on line 14

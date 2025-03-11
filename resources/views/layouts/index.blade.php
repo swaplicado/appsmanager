@@ -32,7 +32,9 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{asset('images/aeth_mini.png')}}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('images/iconIphone.png')}}">
+
 </head>
 <body>
   <div class="container-scroller">
