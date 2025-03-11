@@ -1,0 +1,12 @@
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#togglePassword {
+    margin-right: -20px; /* Ajusta la posición del botón */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
