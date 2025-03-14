@@ -33,6 +33,7 @@ class User extends Authenticatable
         'names',
         'full_name',
         'img_path',
+        'expo_token',
         'is_active',
         'is_deleted',
         'created_by',

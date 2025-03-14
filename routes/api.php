@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
     // Your protected API routes go here
     Route::post('registerUser', [ManagerController::class, 'registerUser']);
     Route::post('getUserApps', [ManagerController::class, 'getUserApps']);
+    Route::post('set-expo-token', [UsersController::class, 'setExpotoken']);
 
     Route::get('prueba', [TestController::class, 'prueba']);
 });

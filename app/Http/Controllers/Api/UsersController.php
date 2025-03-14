@@ -150,4 +150,26 @@ class UsersController extends Controller
 
         return json_encode(['success' => true, 'message' => 'Usuario creado con éxito']);
     }
+
+    public function setExpotoken(Request $request) {
+        $user_id = $request->id;
+        $expo_token = $request->expo_token;
+
+        try {
+            \DB::beginTransaction();
+                $oUser = User::where('id', $user_id)
+                                ->firstOrFail();
+
+                $oUser->expo_token = $expo_token;
+                $oUser->updated_by = 1;
+                $oUser->update();
+            \DB::commit();
+        } catch (\Throwable $th) {
+            \DB::rollBack();
+            \Log::error($th);
+            return json_encode(['success' => false, 'message' => $th->getMessage()]);
+        }
+
+        return json_encode(['success' => true, 'message' => 'Token creado con éxito']);
+    }
 }
