@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Log;
 
 class UsersController extends Controller
 {
@@ -152,11 +153,12 @@ class UsersController extends Controller
     }
 
     public function setExpotoken(Request $request) {
-        $user_id = $request->id;
+        $user_id = $request->user_id;
         $expo_token = $request->expo_token;
 
         try {
             \DB::beginTransaction();
+                Log::info('user_id: ' . $user_id);
                 $oUser = User::where('id', $user_id)
                                 ->firstOrFail();
 
