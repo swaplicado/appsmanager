@@ -39,7 +39,25 @@
               <form id="login_form" class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Usuario</label>
+                  <label for="exampleInputEmail1">
+                    Usuario 
+                    <div class="myTooltip">
+                        <span class="bx bx-info-circle" style="color: rgb(39, 63, 243)"></span>
+                        <div class="bottom-right">
+                            <div class="text-content">
+                                <ul>
+                                    <li>
+                                        Para ingresar como proveedor ingresa tu RFC en el campo "Usuario"
+                                    </li>
+                                    <li>
+                                        Para ingresar como colaborador ingresa tu nombre de usuario en el campo "Usuario"
+                                    </li>
+                                </ul>
+                            </div>
+                            <i></i>
+                        </div>
+                    </div>
+                  </label>
                   <input class="form-control form-control-lg @error('username') is-invalid @enderror" id="username" placeholder="nombre de usuario" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                   @error('username')
                     <span class="invalid-feedback" role="alert">

@@ -43,6 +43,20 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request){
         $this->validateEmail($request);
 
+        $oUser = \DB::table('users')
+                            ->where('username', $request->username)
+                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
+                            ->first();
+
+        if (is_null($oUser)) {
+            return $this->sendResetLinkFailedResponse($request, 'No se encontró al usuario');
+        }
+
+        if (!is_null($oUser->external_id_n)) {
+            return $this->sendResetLinkFailedResponse($request, 'Tu usuario está ligado al sistema SIIE, para recuperar tu contraseña, comunícate con el área de sistemas');
+        }
+
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
