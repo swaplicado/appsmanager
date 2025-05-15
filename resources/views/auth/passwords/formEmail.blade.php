@@ -93,8 +93,25 @@
                                                     @csrf
 
                                                     <div class="form-group row">
-                                                        <label for="username"
-                                                            class="col-md-4 col-form-label text-md-right">{{ __('Nombre de usuario') }}</label>
+                                                        <label for="username" class="col-md-4 col-form-label text-md-right">
+                                                            {{ __('Usuario') }}
+                                                            <div class="myTooltip">
+                                                                <span class="bx bx-info-circle" style="color: rgb(39, 63, 243)"></span>
+                                                                <div class="bottom-right">
+                                                                    <div class="text-content">
+                                                                        <ul>
+                                                                            <li>
+                                                                                Como proveedor ingresa tu RFC en el campo "Usuario"
+                                                                            </li>
+                                                                            <li>
+                                                                                Como colaborador ingresa tu nombre de usuario en el campo "Usuario"
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <i></i>
+                                                                </div>
+                                                            </div>
+                                                        </label>
 
                                                         <div class="col-md-6">
                                                             <input id="username" type="text"
