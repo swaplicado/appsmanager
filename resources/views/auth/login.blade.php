@@ -40,8 +40,8 @@
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputEmail1">
-                    Usuario 
-                    <div class="myTooltip">
+                    Como proveedor ingresa tu RFC / como colaborador ingresa tu nombre de usuario
+                    <!-- <div class="myTooltip">
                         <span class="bx bx-info-circle" style="color: rgb(39, 63, 243)"></span>
                         <div class="bottom-right">
                             <div class="text-content">
@@ -56,9 +56,9 @@
                             </div>
                             <i></i>
                         </div>
-                    </div>
+                    </div> -->
                   </label>
-                  <input class="form-control form-control-lg @error('username') is-invalid @enderror" id="username" placeholder="nombre de usuario" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  <input class="form-control form-control-lg @error('username') is-invalid @enderror" id="username" placeholder="RFC o nombre de usuario" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                   @error('username')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
