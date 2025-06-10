@@ -79,7 +79,7 @@
                                             <img src="{{ asset('images/aeth.png') }}" alt="logo">
                                         </div>
                                         <h4>
-                                            Para reiniciar su contraseña debe ingresar su nombre de usuario
+                                            Para reiniciar su contraseña como <b>proveedor</b> ingresa tu RFC / como <b>comprador</b> ingresa tu nombre de usuario
                                         </h4>
                                         <br>
                                         @if (session('status'))
@@ -93,7 +93,7 @@
                                                     @csrf
 
                                                     <div class="form-group row">
-                                                        <label for="username" class="col-md-4 col-form-label text-md-right">
+                                                        <label for="username" class="col-md-3 col-form-label text-md-right">
                                                             {{ __('Usuario') }}
                                                             <div class="myTooltip">
                                                                 <span class="bx bx-info-circle" style="color: rgb(39, 63, 243)"></span>
@@ -112,9 +112,8 @@
                                                                 </div>
                                                             </div>
                                                         </label>
-
-                                                        <div class="col-md-6">
-                                                            <input id="username" type="text"
+                                                        <div class="col-md-8">
+                                                            <input id="username" type="text" placeholder="Proveedor: tu RFC / Comprador: tu nombre de usuario"
                                                                 class="form-control @error('username') is-invalid @enderror"
                                                                 name="username" value="{{ old('username') }}" required
                                                                 autofocus>
