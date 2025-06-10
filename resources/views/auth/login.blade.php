@@ -40,7 +40,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputEmail1">
-                    Como proveedor ingresa tu RFC / como colaborador ingresa tu nombre de usuario
+                    Como <b>proveedor</b> ingresa tu RFC / como <b>colaborador</b> ingresa tu nombre de usuario
                     <!-- <div class="myTooltip">
                         <span class="bx bx-info-circle" style="color: rgb(39, 63, 243)"></span>
                         <div class="bottom-right">
