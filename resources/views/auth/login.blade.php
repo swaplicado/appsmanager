@@ -22,11 +22,12 @@
 
   <script src="{{ asset('sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
   <script src="{{ asset('js/myApp/gui/SGui.js') }}"></script>
+  
 </head>
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="container-fluid page-body-wrapper ">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
@@ -94,6 +95,12 @@
                       <a href="{{ $registerProviderRoute }}" class="auth-link text-black f-right">Registrarse como proveedor</a>
                   </div>
                 </div>
+                <footer class="footer mt-5">
+                  <div class="d-flex flex-column align-items-center justify-content-center text-center py-3" style="font-size: 14px;">
+                    <p style="margin: 0;">Creado por:</p>
+                    <img src="{{ asset('images/swap_logo.jpg') }}" alt="Logo Software Aplicado" style="width: 140px; height: auto; margin-top: 8px;">
+                  </div>
+                </footer>
               </form>
             </div>
           </div>
@@ -161,5 +168,6 @@
     }
   });
 </script>
+
 </body>
 </html>
