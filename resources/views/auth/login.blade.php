@@ -35,7 +35,7 @@
               <div class="brand-logo">
                 <img src="{{asset('images/aeth.png')}}" alt="logo">
               </div>
-              <h4>¡Hola! Vamos a comenzar</h4>
+              <!-- <h4>¡Hola! Vamos a comenzar</h4>
               <h6 class="font-weight-light">Inicia sesión para continuar.</h6>
               <form id="login_form" class="pt-3" method="POST" action="{{ route('login') }}">
                 @csrf
@@ -102,6 +102,14 @@
                   </div>
                 </footer>
               </form>
+              </form> -->
+              <h4>Nos mudamos de plataforma, por favor presiona el botón para ir al nuevo portal</h4>
+              <h6 class="font-weight-light">
+                <b>Proveedores: </b> Debes activar tu cuenta en el nuevo portal presionando "Activar cuenta de proveedor" en el nuevo portal <a href="https://aeth.swaplicado.com/">https://aeth.swaplicado.com/</a>
+              </h6>
+              <div class="mt-3">
+                  <a href="https://aeth.swaplicado.com/" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Ir al nuevo portal</a>
+              </div>
             </div>
           </div>
         </div>
