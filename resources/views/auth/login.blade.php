@@ -103,9 +103,9 @@
                 </footer>
               </form>
               </form> -->
-              <h4>Nos mudamos de plataforma, por favor presiona el botón para ir al nuevo portal</h4>
+              <h4>Nos mudamos de plataforma, por favor presiona el botón para ir al nuevo portal: <br><a href="https://aeth.swaplicado.com/">https://aeth.swaplicado.com/</a></h4>
               <h6 class="font-weight-light">
-                <b>Proveedores: </b> Debes activar tu cuenta en el nuevo portal presionando "Activar cuenta de proveedor" en el nuevo portal <a href="https://aeth.swaplicado.com/">https://aeth.swaplicado.com/</a>
+                <b>Proveedores: </b> Debes activar tu cuenta en el nuevo portal presionando "Activar cuenta de proveedor" en el nuevo portal
               </h6>
               <div class="mt-3">
                   <a href="https://aeth.swaplicado.com/" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Ir al nuevo portal</a>
